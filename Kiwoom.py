@@ -3,7 +3,7 @@ Kiwoom 클래스는 OCX를 통해 API 함수를 호출할 수 있도록 구현�
 OCX 사용을 위해 QAxWidget 클래스를 상속받아서 구현하였으며,
 주식(현물) 거래에 필요한 메서드들만 구현하였습니다.
 
-author: 서경동
+author: 서경동 <https://github.com/kdseo/PyTrader>
 last edit: 2017. 02. 05
 """
 
@@ -24,8 +24,7 @@ class Kiwoom(QAxWidget):
 
         self.setControl("KHOPENAPI.KHOpenAPICtrl.1")
 
-        # Loop 변수
-        # 비동기 방식으로 동작되는 이벤트를 동기화(순서대로 동작) 시킬 때
+        # Loop 변수 : 비동기 방식으로 동작되는 이벤트를 동기화(순서대로 동작) 시킬 때
         self.loginLoop = None
         self.requestLoop = None
         self.orderLoop = None
@@ -89,7 +88,7 @@ class Kiwoom(QAxWidget):
         통신 연결 상태 변경시 이벤트
 
         returnCode가 0이면 로그인 성공
-        그 외에는 ReturnCode 클래스 참조.
+        그 외에는 아래 ReturnCode 클래스 참조.
 
         :param returnCode: int
         """
@@ -1374,9 +1373,9 @@ if __name__ == "__main__":
         kiwoom.commConnect()
 
         server = kiwoom.getServerGubun()
-        print("server: ", server)
-        print("type: ", type(server))
-        print("len: ", len(server))
+        print("server: ", server)       # 1
+        print("type: ", type(server))   # <class 'str'>
+        print("len: ", len(server))     # 1
 
         if len(server) == 0 or server != "1":
             print("실서버 입니다.")
